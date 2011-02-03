@@ -8,19 +8,28 @@ import org.infinispan.notifications.cachelistener.annotation.CacheEntryRemoved;
 import org.infinispan.notifications.cachelistener.event.CacheEntryCreatedEvent;
 import org.infinispan.notifications.cachelistener.event.CacheEntryRemovedEvent;
 
+/**
+ * An Infinispan listener that simply logs cache entries being created and
+ * removed
+ * 
+ * @author Pete Muir
+ * 
+ */
 @Listener
 public class LoggingListener {
 
    private transient Logger log = Logger.getLogger("tutorial");
-   
+
    @CacheEntryCreated
    public void observeAdd(CacheEntryCreatedEvent<?, ?> event) {
-      log.info("Cache entry with key " + event.getKey() + " added in cache " + event.getCache());
+      log.info("Cache entry with key " + event.getKey() + " added in cache "
+	    + event.getCache());
    }
-   
+
    @CacheEntryRemoved
    public void observeRemove(CacheEntryRemovedEvent<?, ?> event) {
-      log.info("Cache entry with key " + event.getKey() + " removed in cache " + event.getCache());
+      log.info("Cache entry with key " + event.getKey() + " removed in cache "
+	    + event.getCache());
    }
-   
+
 }
